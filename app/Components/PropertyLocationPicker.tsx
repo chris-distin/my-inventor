@@ -245,7 +245,7 @@ export default function PropertyLocationPicker({
 
           type="geojson"
 
-          data={markerData as any}
+          data={markerData as GeoJSON.Feature}
 
         >
 

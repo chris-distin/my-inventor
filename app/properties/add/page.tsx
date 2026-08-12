@@ -21,10 +21,6 @@ export default function AddPropertyPage() {
   const [area, setArea] = useState("");
   const [status, setStatus] = useState("Available");
 
-  useEffect(() => {
-    checkUser();
-  }, []);
-
   async function checkUser() {
     const { data } = await supabase.auth.getUser();
 
@@ -36,6 +32,11 @@ export default function AddPropertyPage() {
     setUserId(data.user.id);
     setLoading(false);
   }
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
+    checkUser();
+  }, []);
 
   async function saveProperty(e: React.FormEvent) {
     e.preventDefault();
@@ -195,7 +196,7 @@ export default function AddPropertyPage() {
 }
 
 
-function Field({ label, children }: any) {
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
       <label style={labelStyle}>{label}</label>

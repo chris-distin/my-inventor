@@ -4,8 +4,27 @@ import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import PropertyMap from "../Components/PropertyMap";
 import { properties } from "../data/properties";
+type PropertyItem = {
+  id: string;
+  title: string;
+  location: string;
+  price: string | number;
+  image?: string;
+  longitude?: number;
+  latitude?: number;
+  type?: string;
+  purpose?: string;
+  bedrooms?: number;
+  bathrooms?: number;
+  area?: number | null;
+  developer?: string;
+  images?: string[] | null;
+  featured_image?: string | null;
+  description?: string;
+};
+
 export default function PropertiesPage() {
-  const [properties, setProperties] = useState<any[]>([]);
+  const [properties, setProperties] = useState<PropertyItem[]>([]);
 
   useEffect(() => {
     async function loadProperties() {

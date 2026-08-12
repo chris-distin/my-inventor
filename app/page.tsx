@@ -30,21 +30,23 @@ function formatPrice(value: string | number | null | undefined) {
   return `AED ${numericValue.toLocaleString("en-AE")}`;
 }
 
-function normalizeProperty(row: any): PropertyCardData {
-  const images = Array.isArray(row?.images) ? row.images : [];
+function normalizeProperty(row: unknown): PropertyCardData {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const r = row as Record<string, any>;
+  const images = Array.isArray(r?.images) ? r.images : [];
   return {
-    id: row?.id ?? "",
-    title: row?.title ?? "Untitled Property",
-    price: formatPrice(row?.price),
-    location: row?.location ?? "Dubai, UAE",
-    type: row?.type ?? "Apartment",
-    purpose: row?.purpose ?? "Buy",
-    bedrooms: row?.bedrooms ?? 0,
-    bathrooms: row?.bathrooms ?? 0,
-    area: row?.area?.toString() ?? "—",
-    developer: row?.developer ?? "Home for All",
-    image: images[0] ?? row?.featured_image ?? "/favicon.ico",
-    description: row?.description ?? "",
+    id: r?.id ?? "",
+    title: r?.title ?? "Untitled Property",
+    price: formatPrice(r?.price),
+    location: r?.location ?? "Dubai, UAE",
+    type: r?.type ?? "Apartment",
+    purpose: r?.purpose ?? "Buy",
+    bedrooms: r?.bedrooms ?? 0,
+    bathrooms: r?.bathrooms ?? 0,
+    area: r?.area?.toString() ?? "—",
+    developer: r?.developer ?? "Home for All",
+    image: images[0] ?? r?.featured_image ?? "/favicon.ico",
+    description: r?.description ?? "",
   };
 }
 

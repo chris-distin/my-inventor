@@ -17,10 +17,6 @@ export default function ProfilePage() {
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState("Buyer");
 
-  useEffect(() => {
-    loadProfile();
-  }, []);
-
   async function loadProfile() {
     const { data, error } = await supabase.auth.getUser();
 
@@ -47,6 +43,11 @@ export default function ProfilePage() {
 
     setLoading(false);
   }
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
+    loadProfile();
+  }, []);
 
 
   async function saveProfile() {

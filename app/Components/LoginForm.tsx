@@ -192,7 +192,7 @@ export default function LoginForm() {
           marginTop: "10px",
         }}
       >
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <Link
           href="/register"
           style={{
