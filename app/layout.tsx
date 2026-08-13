@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { siteConfig } from "./config/site";
 import "./globals.css";
-import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
-import WhatsAppButton from "./Components/WhatsAppButton";
 
 const siteUrl = siteConfig.url;
 
@@ -46,13 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-
-        <main>
-          {children}
-        </main>
-<WhatsAppButton />
-        <Footer />
+        {children}
       </body>
     </html>
   );
